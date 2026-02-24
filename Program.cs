@@ -107,10 +107,16 @@ namespace WagesApp
         //Calculate tax
         static float CalculateTax(List<int>hoursWorked)
         {
-            float tax = 0.0f;  
+            float tax = 0.0f;
 
-
-
+            if (CalculateWeeklyPay(hoursWorked) + CalculateBonus(hoursWorked) < 450)
+            {
+                tax = CalculateWeeklyPay(hoursWorked) + CalculateBonus(hoursWorked) * TAXRATES.ElementAt(0);
+            }
+            else
+            {
+                tax = CalculateWeeklyPay(hoursWorked) + CalculateBonus(hoursWorked) * TAXRATES.ElementAt(1);
+            }
             return tax;
         }
 
